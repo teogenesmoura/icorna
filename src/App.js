@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { ButtonBase, Grid, GridList, GridListTile } from '@material-ui/core'
-import Typography from '@material-ui/core/Typography'
+import { ButtonBase, Grid, GridList, GridListTile, Typography } from '@material-ui/core'
 import fivela from './assets/fivela.mp3'
 import bello from './assets/img/bello.jpeg'
 import diahospital from './assets/img/diahospital.jpeg'
@@ -88,7 +87,14 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     width: '100%',
-  }
+  },
+  title: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: '2rem 0 -2rem 0',
+    width: '100%',
+  },
 }))
 
 const images = [
@@ -190,6 +196,16 @@ function ImageGridList(props) {
   )
 }
 
+function Title() {
+  const classes = useStyles()
+  return (
+    <Grid container>
+      <Grid item className={classes.title} xs={12}>
+        <Typography variant="h2">iCorna v1.0</Typography>
+      </Grid>
+    </Grid>
+  )
+}
 export default function App() {
   const classes = useStyles()
   const [currentAudio, setCurrentAudio] = useState()
@@ -201,6 +217,7 @@ export default function App() {
 
   return (
     <Grid container className={classes.root}>
+        <Title />
         <ImageGridList startAudio={startAudio}/>
      </Grid>
   )
