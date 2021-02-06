@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import ButtonBase from '@material-ui/core/ButtonBase'
+import { ButtonBase, Grid, GridList, GridListTile } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
 import fivela from './assets/fivela.mp3'
 import bello from './assets/img/bello.jpeg'
@@ -14,12 +14,13 @@ import prefeitacidadepequena from './assets/img/prefeitacidadepequena.jpeg'
 import quehumtrocin from './assets/img/quehumtrocin.jpeg'
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  rootGridList: {
+    width: '100%',
     display: 'flex',
     flexWrap: 'wrap',
-    minWidth: 300,
-    width: '100%',
-    margin: '1rem'
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    padding: '10rem',
   },
   image: {
     position: 'relative',
@@ -85,53 +86,47 @@ const useStyles = makeStyles((theme) => ({
     left: 'calc(50% - 9px)',
     transition: theme.transitions.create('opacity'),
   },
+  gridList: {
+    width: '100%',
+  }
 }))
 
 const images = [
   {
     url: bello,
     title: 'Belloooo',
-    width: '20%',
   },
   {
     url: diahospital,
     title: 'trupica mar num cai',
-    width: '20%',
   },
   {
     url: gatin1,
     title: 'gatin1',
-    width: '20%',
   },
   {
     url: gatin2,
     title: 'gatin2',
-    width: '20%',
   },
   {
     url: fivela_img,
     title: 'fivela',
-    width: '20%',
   },
   {
     url: hellye,
     title: 'hellyey',
-    width: '20%',
   },
   {
     url: lekpiranha,
     title: 'lekpiranha',
-    width: '20%',
   },
   {
     url: prefeitacidadepequena,
     title: 'prefeitacidadepequena',
-    width: '20%',
   },
   {
     url: quehumtrocin,
     title: 'quehumtrocin',
-    width: '20%',
   },
 ]
 
@@ -139,17 +134,65 @@ const imageAudioMap = {
   'fivela': fivela
 }
 
+function ImageTile(props) {
+  const classes = useStyles()
+  const image = props.image
+  return (
+    <>
+      <ButtonBase
+        focusRipple
+        key={image.title}
+        className={classes.image}
+        focusVisibleClassName={classes.focusVisible}
+        onClick={() => props.startAudio(image.title)}
+        style={{
+          width: '100%',
+        }}
+        >
+        <span
+          className={classes.imageSrc}
+          style={{
+            backgroundImage: `url(${image.url})`,
+          }}
+          />
+       <span className={classes.imageBackdrop} />
+       <span className={classes.imageButton}>
+         <Typography
+           component="span"
+           variant="subtitle1"
+           color="inherit"
+           className={classes.imageTitle}
+         >
+           {image.title}
+           <span className={classes.imageMarked} />
+         </Typography>
+       </span>
+     </ButtonBase>
+   </>
+ )
+}
+
+function ImageGridList(props) {
+  const classes = useStyles()
+
+  return (
+    <div className={classes.rootGridList}>
+      <GridList cellHeight={200} className={classes.gridList} cols={3}>
+        {images.map((image) => {
+          return (
+            <GridListTile key={image.title} cols={1}>
+              <ImageTile image={image} startAudio={props.startAudio}/>
+            </GridListTile>
+          )
+        })}
+      </GridList>
+    </div>
+  )
+}
+
 export default function App() {
   const classes = useStyles()
   const [currentAudio, setCurrentAudio] = useState()
-
-  const selectAudio = (imageTitle) => {
-    let res = new Promise()
-    switch(imageTitle) {
-      case 'fivela': return fivela;
-      default: return fivela;
-    }
-  }
 
   const startAudio = (audioTitle) => {
     let audio = new Audio(imageAudioMap[audioTitle])
@@ -157,39 +200,9 @@ export default function App() {
   }
 
   return (
-    <div className={classes.root}>
-    {images.map((image) => (
-       <ButtonBase
-         focusRipple
-         key={image.title}
-         className={classes.image}
-         focusVisibleClassName={classes.focusVisible}
-         onClick={() => startAudio(image.title)}
-         style={{
-           width: image.width,
-         }}
-       >
-         <span
-           className={classes.imageSrc}
-           style={{
-             backgroundImage: `url(${image.url})`,
-           }}
-         />
-         <span className={classes.imageBackdrop} />
-         <span className={classes.imageButton}>
-           <Typography
-             component="span"
-             variant="subtitle1"
-             color="inherit"
-             className={classes.imageTitle}
-           >
-             {image.title}
-             <span className={classes.imageMarked} />
-           </Typography>
-         </span>
-       </ButtonBase>
-     ))}
-    </div>
+    <Grid container className={classes.root}>
+        <ImageGridList startAudio={startAudio}/>
+     </Grid>
   )
 }
 // <button onClick={start}>Fala corna!</button>
