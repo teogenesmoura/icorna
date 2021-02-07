@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/icorna/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/icorna/static/js/main.14b917ef.chunk.js",
-    "main.js.map": "/icorna/static/js/main.14b917ef.chunk.js.map",
+    "main.js": "/icorna/static/js/main.c03d6c2e.chunk.js",
+    "main.js.map": "/icorna/static/js/main.c03d6c2e.chunk.js.map",
     "runtime-main.js": "/icorna/static/js/runtime-main.4d8fce4a.js",
     "runtime-main.js.map": "/icorna/static/js/runtime-main.4d8fce4a.js.map",
     "static/js/2.4fd1d74e.chunk.js": "/icorna/static/js/2.4fd1d74e.chunk.js",
@@ -27,6 +27,6 @@
     "static/js/runtime-main.4d8fce4a.js",
     "static/js/2.4fd1d74e.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.14b917ef.chunk.js"
+    "static/js/main.c03d6c2e.chunk.js"
   ]
 }
