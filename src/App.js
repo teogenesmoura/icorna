@@ -104,8 +104,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     fontFamily: 'Pacifico, cursive',
-    margin: '2rem 0 -2rem 0',
     width: '100%',
+    padding: '2rem'
   },
 }))
 
@@ -213,7 +213,7 @@ function Title() {
   return (
     <Grid container>
       <Grid item className={classes.title} xs={12}>
-        <Typography variant="h2">Fala corna v1.0</Typography>
+        <Typography style={{fontFamily: 'Pacifico, cursive'}} variant="h1">Fala Corna v1.0</Typography>
       </Grid>
     </Grid>
   )
