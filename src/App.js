@@ -20,13 +20,20 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     padding: '10rem',
+    [theme.breakpoints.down('lg')]: {
+      padding: '2rem'
+    },
   },
   image: {
     position: 'relative',
     height: 200,
     [theme.breakpoints.down('xs')]: {
       width: '100% !important', // Overrides inline-style
-      height: 100,
+      height: 150,
+    },
+    [theme.breakpoints.down('lg')]: {
+      width: '100% !important', // Overrides inline-style
+      height: 300,
     },
     '&:hover, &$focusVisible': {
       zIndex: 1,
@@ -75,6 +82,9 @@ const useStyles = makeStyles((theme) => ({
   imageTitle: {
     position: 'relative',
     padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${theme.spacing(1) + 6}px`,
+    [theme.breakpoints.down('md')]: {
+      padding: '2rem'
+    },
   },
   imageMarked: {
     height: 3,
@@ -87,11 +97,13 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     width: '100%',
+    padding: '2rem 0 0 0'
   },
   title: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    fontFamily: 'Pacifico, cursive',
     margin: '2rem 0 -2rem 0',
     width: '100%',
   },
@@ -201,7 +213,7 @@ function Title() {
   return (
     <Grid container>
       <Grid item className={classes.title} xs={12}>
-        <Typography variant="h2">iCorna v1.0</Typography>
+        <Typography variant="h2">Fala corna v1.0</Typography>
       </Grid>
     </Grid>
   )
